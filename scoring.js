@@ -5,7 +5,7 @@ function calculatePassingScore(player) {
 
   return yards + touchdowns + interceptions
 }
-
+// KMC: Test
 function calculateRushingScore(player) {
   var yards = parseFloat((player.stats.rushing.yards / 10).toFixed(2))
   var touchdowns = player.stats.rushing.touchdowns * 6
@@ -36,8 +36,21 @@ function calculateReturnScore(player) {
 }
 
 module.exports.calculateScore = function (player) {
-  return calculatePassingScore(player) +
-    calculateRushingScore(player) +
-    calculateReceivingScore(player) +
-    calculateReturnScore(player)
+  switch (player.position) {
+    case 'QB':
+      return calculatePassingScore(player) +
+        calculateRushingScore(player)
+    case 'RB':
+      return calculateRushingScore(player) +
+        calculateReceivingScore(player) +
+        calculateReturnScore(player)
+    case 'WR':
+      return calculateRushingScore(player) +
+        calculateReceivingScore(player) +
+        calculateReturnScore(player)
+    case 'TE':
+      return calculateReceivingScore(player)
+    default:
+      return 0
+  }
 }
