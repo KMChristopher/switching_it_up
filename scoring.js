@@ -35,9 +35,22 @@ function calculateReturnScore(player) {
   return kickYards + kickTouchdowns + kickFumbles + puntYards + puntTouchdowns + puntFumbles
 }
 
+// KMC: Modified code here ...
 module.exports.calculateScore = function (player) {
-  return calculatePassingScore(player) +
-    calculateRushingScore(player) +
-    calculateReceivingScore(player) +
-    calculateReturnScore(player)
+  switch (player.position) { // KMC: Reaches into player variable, and grabs the position attribute
+    case 'QB':
+      return  calculatePassingScore(player) +
+              calculateRushingScore(player);
+    case 'RB': // KMC: You can't combine cases with || ... (Prolly cuz cases themselves are a type of "OR" statement (?)) ... Instead, just list them one after the other, then the "return" statement 
+    case 'WR':
+      return  calculateRushingScore(player) +
+              calculateReceivingScore(player) +
+              calculateReturnScore(player);
+    case 'TE':
+      return  calculateReceivingScore(player);
+    default: // KMC: All switch statements need some kind of default to go to when none of the other options matter 
+      return  0
+  }
 }
+
+
