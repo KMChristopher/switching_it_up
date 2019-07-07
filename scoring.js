@@ -5,7 +5,7 @@ function calculatePassingScore(player) {
 
   return yards + touchdowns + interceptions
 }
-// KMC: Test
+
 function calculateRushingScore(player) {
   var yards = parseFloat((player.stats.rushing.yards / 10).toFixed(2))
   var touchdowns = player.stats.rushing.touchdowns * 6
