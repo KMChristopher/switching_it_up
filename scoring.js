@@ -48,7 +48,7 @@ module.exports.calculateScore = function (player) {
               calculateReturnScore(player);
     case 'TE':
       return  calculateReceivingScore(player);
-    default: // KMC: All switch statements need some kind of default to go to when none of the other options matter 
+    default: // KMC: All switch statements need some kind of default to go to when none of the other options are appropriate
       return  0
   }
 }
